@@ -1,5 +1,5 @@
 # OqTaConteseno
-The backend and web version of the oqtaconteseno-mobile application
+The backend and web version of the [oqtaconteseno-mobile](https://github.com/kdym/oqtaconteseno-mobile) application
 
 ## Application
 * Ruby on Rails (Ruby v2.3.3, Rails v5.1.1)
