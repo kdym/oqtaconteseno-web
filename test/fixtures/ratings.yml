@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app_user: one
+  event: one
+  comentario: MyText
+  nota: 1
+
+two:
+  app_user: two
+  event: two
+  comentario: MyText
+  nota: 1

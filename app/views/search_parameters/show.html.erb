@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tipos:</strong>
+  <%= @search_parameter.tipos %>
+</p>
+
+<p>
+  <strong>Distancia:</strong>
+  <%= @search_parameter.distancia %>
+</p>
+
+<p>
+  <strong>Periodo:</strong>
+  <%= @search_parameter.periodo %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @search_parameter.user %>
+</p>
+
+<%= link_to 'Edit', edit_search_parameter_path(@search_parameter) %> |
+<%= link_to 'Back', search_parameters_path %>

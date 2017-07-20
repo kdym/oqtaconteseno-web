@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Facebook:</strong>
+  <%= @app_user.facebook_id %>
+</p>
+
+<%= link_to 'Edit', edit_app_user_path(@app_user) %> |
+<%= link_to 'Back', app_users_path %>

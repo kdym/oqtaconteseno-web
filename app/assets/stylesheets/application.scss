@@ -1,0 +1,159 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "font-awesome";
+
+$primaryColor: #985BA3;
+$lightColor: #fff;
+
+$xxsmall: 480px;
+
+body, html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+  #content {
+    flex: 1;
+
+    header {
+      padding: 10px;
+      background: $primaryColor;
+
+      @media only screen and (max-width: $xxsmall), only screen and (max-device-width: $xxsmall) {
+        .align-center {
+          display: block;
+        }
+
+        img {
+          margin: 0 auto;
+        }
+      }
+
+      #logo {
+        img {
+          max-height: 6vh;
+        }
+      }
+
+      #user-area {
+        text-align: right;
+
+        @media only screen and (max-width: $xxsmall), only screen and (max-device-width: $xxsmall) {
+          text-align: center;
+        }
+
+        #avatar-menu {
+          display: inline-block;
+          cursor: pointer;
+
+          img {
+            height: 6vh;
+          }
+        }
+
+        .popover-content {
+          padding: 0;
+          width: 250px;
+
+          #user-info {
+            background: #BB8AC4;
+            border-radius: 5px 5px 0 0;
+            padding: 5px;
+
+            figure {
+              margin: 10px 0;
+
+              img {
+                margin: 0 auto;
+                height: 10vh;
+                border: solid 2px #fff;
+              }
+            }
+
+            h1 {
+              margin: 10px 0;
+              font-size: medium;
+              color: $lightColor;
+              text-align: center;
+            }
+          }
+
+          #user-actions {
+            padding: 2px;
+            text-align: right;
+          }
+        }
+
+        #user-popover {
+          display: none;
+        }
+      }
+    }
+
+    main {
+
+    }
+  }
+}
+
+footer {
+  background: $primaryColor;
+  padding: 10px;
+  text-align: right;
+  color: $lightColor;
+
+  @media only screen and (max-width: $xxsmall), only screen and (max-device-width: $xxsmall) {
+    text-align: center;
+  }
+
+  a {
+    color: $lightColor;
+
+    &:hover {
+      text-decoration: none;
+      color: #E5F285;
+    }
+  }
+}
+
+.to-right {
+  text-align: right;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.main-alert {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}

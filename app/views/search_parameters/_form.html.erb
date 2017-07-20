@@ -1,0 +1,37 @@
+<%= form_for(search_parameter) do |f| %>
+  <% if search_parameter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(search_parameter.errors.count, "error") %> prohibited this search_parameter from being saved:</h2>
+
+      <ul>
+      <% search_parameter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tipos %>
+    <%= f.text_field :tipos %>
+  </div>
+
+  <div class="field">
+    <%= f.label :distancia %>
+    <%= f.number_field :distancia %>
+  </div>
+
+  <div class="field">
+    <%= f.label :periodo %>
+    <%= f.number_field :periodo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

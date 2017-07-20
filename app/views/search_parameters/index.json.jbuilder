@@ -1,0 +1,1 @@
+json.array! @search_parameters, partial: 'search_parameters/search_parameter', as: :search_parameter

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  latitude: MyString
+  longitude: MyString
+  tipo: 
+  data_inicio: 2017-02-10 09:26:17
+  data_fim: 2017-02-10 09:26:17
+  app_user: one
+
+two:
+  nome: MyString
+  latitude: MyString
+  longitude: MyString
+  tipo: 
+  data_inicio: 2017-02-10 09:26:17
+  data_fim: 2017-02-10 09:26:17
+  app_user: two

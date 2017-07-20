@@ -1,0 +1,1 @@
+json.partial! "search_parameters/search_parameter", search_parameter: @search_parameter
