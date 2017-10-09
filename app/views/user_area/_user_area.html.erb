@@ -1,17 +1,9 @@
 <div id="user-area">
-  <a id="avatar-menu"><%= image_tag current_user.image, class: 'img-responsive img-circle' %></a>
+  <a><%= image_tag current_user.image, class: 'rounded-circle', id: 'avatar-menu' %></a>
 
   <div id="user-popover">
-    <div id="user-info">
-      <figure>
-        <%= image_tag current_user.image, class: 'img-responsive img-circle' %>
-      </figure>
-
-      <h1><%= current_user.name %></h1>
-    </div>
-
-    <div id="user-actions">
-      <%= link_to "<i class='fa fa-sign-out'></i> #{t('logout')}".html_safe, destroy_user_session_path, class: 'btn btn-default', method: :delete %>
-    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><%= link_to "<i class='fa fa-sign-out'></i> #{t('logout')}".html_safe, destroy_user_session_path, class: 'nav-link', method: :delete %></li>
+    </ul>
   </div>
 </div>

@@ -1,3 +1,3 @@
-<h1>OqTaConteseno</h1>
+<h1><%= t('app_name') %></h1>
 
-<%= link_to 'Login com Facebook', omniauth_authorize_path(resource_name, 'facebook') %><br/>
+<%= link_to t('login_facebook'), omniauth_authorize_path(resource_name, 'facebook') %><br/>

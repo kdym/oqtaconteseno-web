@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require popper
+//= require bootstrap-sprockets
 //= require jquery_ujs
-//= require twitter/bootstrap
 //= require_tree .
 
 $('#avatar-menu').popover({

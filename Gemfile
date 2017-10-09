@@ -51,7 +51,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pg'
 
-gem 'twitter-bootstrap-rails'
+gem 'bootstrap'
 gem 'font-awesome-rails'
 
 gem 'devise'

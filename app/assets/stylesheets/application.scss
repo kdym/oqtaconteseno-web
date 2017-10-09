@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
+@import "bootstrap";
 @import "font-awesome";
 
 $primaryColor: #985BA3;
@@ -52,6 +52,12 @@ body {
       }
 
       #logo {
+        margin: 0;
+
+        @media only screen and (max-width: 575px), only screen and (max-device-width: 575px) {
+          text-align: center;
+        }
+
         img {
           max-height: 6vh;
         }
@@ -60,7 +66,7 @@ body {
       #user-area {
         text-align: right;
 
-        @media only screen and (max-width: $xxsmall), only screen and (max-device-width: $xxsmall) {
+        @media only screen and (max-width: 575px), only screen and (max-device-width: 575px) {
           text-align: center;
         }
 
@@ -120,11 +126,12 @@ body {
 
 footer {
   background: $primaryColor;
-  padding: 10px;
+  padding: 5px;
   text-align: right;
+  font-size: x-small;
   color: $lightColor;
 
-  @media only screen and (max-width: $xxsmall), only screen and (max-device-width: $xxsmall) {
+  @media only screen and (max-width: 575px), only screen and (max-device-width: 575px) {
     text-align: center;
   }
 

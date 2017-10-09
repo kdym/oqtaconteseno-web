@@ -13,14 +13,14 @@
   <div id="content">
     <header>
       <div class="container-fluid">
-        <div class="row align-center">
+        <div class="row align-items-center">
           <div class="col-md-6 col-sm-6">
             <figure id="logo">
-              <%= image_tag 'logo_horizontal.png', class: 'img-responsive', alt: t('app_name') %>
+              <%= image_tag 'logo_horizontal.png', class: 'img-fluid', alt: t('app_name'), id: 'logo' %>
             </figure>
           </div>
 
-          <div class="col-md-6 col-sm-6 full-width">
+          <div class="col-md-6 col-sm-6">
             <%= render 'user_area/user_area' %>
           </div>
         </div>

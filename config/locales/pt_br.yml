@@ -2,3 +2,4 @@ pt_BR:
   app_name: 'OqTaConteseno'
   kdym_name: 'Kdym Soluções em Tecnologia'
   logout: 'Sair'
+  login_facebook: "Login com Facebook"
