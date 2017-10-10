@@ -1,0 +1,25 @@
+pt_BR:
+  activerecord:
+    errors:
+      messages:
+        blank: 'é um campo obrigatório'
+        png_only: 'somente arquivos tipo PNG'
+        max_size: 'tamanho máximo %{size}'
+    models:
+      event:
+        one: 'Evento'
+        other: 'Eventos'
+      events_type:
+        one: 'Tipo de Evento'
+        other: 'Tipos de Eventos'
+
+    attributes:
+      event:
+        nome: 'Nome'
+        tipo: 'Tipo'
+        data_inicio: 'Início'
+        data_fim: 'Fim'
+      events_type:
+        nome: 'Nome'
+        icone: 'Ícone'
+        icone_file: 'Ícone'

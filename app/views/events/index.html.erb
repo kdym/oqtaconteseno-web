@@ -1,39 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div id="map-hint"><i class="fa fa-lightbulb-o"></i> <%= t('map_hint') %></div>
 
-<h1>Events</h1>
+<div id="map"></div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Tipo</th>
-      <th>Data inicio</th>
-      <th>Data fim</th>
-      <th>App user</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= hidden_field_tag 'selected_latitude', nil, id: 'selected-latitude-input' %>
+<%= hidden_field_tag 'selected_longitude', nil, id: 'selected-longitude-input' %>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.nome %></td>
-        <td><%= event.latitude %></td>
-        <td><%= event.longitude %></td>
-        <td><%= event.tipo %></td>
-        <td><%= event.data_inicio %></td>
-        <td><%= event.data_fim %></td>
-        <td><%= event.app_user %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script type="text/html" id="add-event-info-window-template">
+  <a href="" id="add-new-event-link" class="btn btn-link"><i class="fa fa-plus"></i> <%= t('new_event') %></a>
+</script>
 
-<br>
+<div class="modal" id="add-event-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= t('new_event') %></h5>
 
-<%= link_to 'New Event', new_event_path %>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <%= render 'form', event: @event %>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success"><i class="fa fa-check"></i> <%= t('save') %></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@
  */
 @import "bootstrap";
 @import "font-awesome";
+@import "datatables";
 
 $primaryColor: #985BA3;
 $lightColor: #fff;
@@ -34,113 +35,100 @@ body {
   flex-direction: column;
   min-height: 100%;
 
-  #content {
+  header {
+    padding: 10px;
+    background: $primaryColor;
+
+    @media only screen and (max-width: $xxsmall), only screen and (max-device-width: $xxsmall) {
+      .align-center {
+        display: block;
+      }
+
+      img {
+        margin: 0 auto;
+      }
+    }
+
+    #logo {
+      margin: 0;
+
+      @media only screen and (max-width: 575px), only screen and (max-device-width: 575px) {
+        text-align: center;
+      }
+
+      img {
+        max-height: 6vh;
+      }
+    }
+
+    #user-area {
+      text-align: right;
+
+      @media only screen and (max-width: 575px), only screen and (max-device-width: 575px) {
+        text-align: center;
+      }
+
+      #avatar-menu {
+        cursor: pointer;
+      }
+
+      .btn {
+        color: #fff;
+      }
+
+      #user-popover {
+        display: none;
+      }
+    }
+  }
+
+  main {
     flex: 1;
+    display: flex;
+    position: relative;
 
-    header {
-      padding: 10px;
-      background: $primaryColor;
+    .content {
+      padding: 20px;
+      width: 100%;
+      background: $gray-200;
 
-      @media only screen and (max-width: $xxsmall), only screen and (max-device-width: $xxsmall) {
-        .align-center {
-          display: block;
-        }
-
-        img {
-          margin: 0 auto;
-        }
+      .actions {
+        margin: 10px 0;
       }
 
-      #logo {
-        margin: 0;
+      .box {
+        position: relative;
+        border-radius: 3px;
+        background: #ffffff;
+        border-top: 3px solid $gray-400;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 
-        @media only screen and (max-width: 575px), only screen and (max-device-width: 575px) {
-          text-align: center;
-        }
-
-        img {
-          max-height: 6vh;
-        }
-      }
-
-      #user-area {
-        text-align: right;
-
-        @media only screen and (max-width: 575px), only screen and (max-device-width: 575px) {
-          text-align: center;
-        }
-
-        #avatar-menu {
-          display: inline-block;
-          cursor: pointer;
-
-          img {
-            height: 6vh;
-          }
-        }
-
-        .popover-content {
-          padding: 0;
-          width: 250px;
-
-          #user-info {
-            background: #BB8AC4;
-            border-radius: 5px 5px 0 0;
-            padding: 5px;
-
-            figure {
-              margin: 10px 0;
-
-              img {
-                margin: 0 auto;
-                height: 10vh;
-                border: solid 2px #fff;
-              }
-            }
-
-            h1 {
-              margin: 10px 0;
-              font-size: medium;
-              color: $lightColor;
-              text-align: center;
-            }
-          }
-
-          #user-actions {
-            padding: 2px;
-            text-align: right;
-          }
-        }
-
-        #user-popover {
-          display: none;
+        .box-body {
+          padding: 10px;
         }
       }
     }
-
-    main {
-
-    }
-  }
-}
-
-footer {
-  background: $primaryColor;
-  padding: 5px;
-  text-align: right;
-  font-size: x-small;
-  color: $lightColor;
-
-  @media only screen and (max-width: 575px), only screen and (max-device-width: 575px) {
-    text-align: center;
   }
 
-  a {
+  footer {
+    background: $primaryColor;
+    padding: 5px;
+    text-align: right;
+    font-size: x-small;
     color: $lightColor;
 
-    &:hover {
-      text-decoration: none;
-      color: #E5F285;
+    @media only screen and (max-width: 575px), only screen and (max-device-width: 575px) {
+      text-align: center;
+    }
+
+    a {
+      color: $lightColor;
+
+      &:hover {
+        text-decoration: none;
+        color: #E5F285;
+      }
     }
   }
 }
@@ -163,4 +151,26 @@ footer {
   bottom: 10px;
   left: 10px;
   right: 10px;
+}
+
+form {
+  .field_with_errors {
+    input {
+      border-color: $red;
+    }
+  }
+
+  .form-image {
+    margin: 5px 0;
+
+    img {
+      max-height: 15vh;
+    }
+  }
+}
+
+.responsive-margin-bottom {
+  @media only screen and (max-width: 767px), only screen and (max-device-width: 767px) {
+    margin-bottom: 10px;
+  }
 }

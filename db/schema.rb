@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628195247) do
+ActiveRecord::Schema.define(version: 20171010105757) do
 
   create_table "app_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "facebook_id"
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(version: 20170628195247) do
     t.float    "latitude",    limit: 24
     t.float    "longitude",   limit: 24
     t.index ["app_user_id"], name: "index_events_on_app_user_id", using: :btree
+  end
+
+  create_table "events_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "nome"
+    t.binary "icone", limit: 16777215
   end
 
   create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -70,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170628195247) do
     t.string   "uid"
     t.string   "name"
     t.string   "image"
+    t.integer  "role"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

@@ -71,4 +71,10 @@ gem 'koala'
 gem 'certified'
 gem 'httparty'
 
+gem 'jquery-tmpl-rails'
+
+gem 'pundit'
+
+gem 'jquery-datatables'
+
 ruby '2.3.3'

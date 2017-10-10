@@ -1,8 +1,12 @@
 <div id="user-area">
-  <a><%= image_tag current_user.image, class: 'rounded-circle', id: 'avatar-menu' %></a>
+  <button class="btn btn-link" id="avatar-menu"><%= image_tag current_user.image, class: 'rounded-circle' %></button>
 
   <div id="user-popover">
     <ul class="nav flex-column">
+      <% if policy(EventsType).index? %>
+          <li class="nav-item"><%= link_to "<i class='fa fa-list'></i> #{EventsType.model_name.human(count: 2)}".html_safe, events_types_path, class: 'nav-link' %></li>
+      <% end %>
+
       <li class="nav-item"><%= link_to "<i class='fa fa-sign-out'></i> #{t('logout')}".html_safe, destroy_user_session_path, class: 'nav-link', method: :delete %></li>
     </ul>
   </div>

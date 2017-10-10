@@ -14,6 +14,7 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require datatables.js.erb
 //= require_tree .
 
 $('#avatar-menu').popover({
@@ -23,3 +24,5 @@ $('#avatar-menu').popover({
     placement: 'bottom',
     html: true
 });
+
+$('[data-toggle="tooltip"]').tooltip();

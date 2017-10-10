@@ -3,3 +3,13 @@ pt_BR:
   kdym_name: 'Kdym Soluções em Tecnologia'
   logout: 'Sair'
   login_facebook: "Login com Facebook"
+  new_event: "Novo Evento"
+  map_hint: "Clique duas vezes num ponto para criar um Evento"
+  save: "Salvar"
+  new: "Novo"
+  save_success: "Salvo com sucesso"
+  actions: "Ações"
+  edit: "Editar"
+  delete: "Excluir"
+  delete_confirm: "Tem certeza que deseja excluir?"
+  delete_success: "Excluído com sucesso"

@@ -5,32 +5,32 @@
   <title><%= t('app_name') %></title>
   <%= csrf_meta_tags %>
 
+  <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
 <div id="wrapper">
-  <div id="content">
-    <header>
-      <div class="container-fluid">
-        <div class="row align-items-center">
-          <div class="col-md-6 col-sm-6">
-            <figure id="logo">
-              <%= image_tag 'logo_horizontal.png', class: 'img-fluid', alt: t('app_name'), id: 'logo' %>
-            </figure>
-          </div>
+  <header>
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-md-6 col-sm-6">
+          <figure id="logo">
+            <%= image_tag 'logo_horizontal.png', class: 'img-fluid', alt: t('app_name'), id: 'logo' %>
+          </figure>
+        </div>
 
-          <div class="col-md-6 col-sm-6">
-            <%= render 'user_area/user_area' %>
-          </div>
+        <div class="col-md-6 col-sm-6">
+          <%= render 'user_area/user_area' %>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <%= yield %>
-    </main>
-  </div>
+  <main>
+    <%= yield %>
+  </main>
 
   <footer>
     <%= link_to t('kdym_name'), ApplicationController::KDYM_SITE, target: '_blank' %>
@@ -54,5 +54,7 @@
 </div>
 </body>
 
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{GoogleMapsHelper::API_KEY}" %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
 </html>

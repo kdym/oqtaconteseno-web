@@ -1,0 +1,33 @@
+<%= form_for eventType do |f| %>
+    <% if eventType.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% eventType.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="box">
+      <div class="box-body">
+        <div class="form-group">
+          <%= f.label :nome %>
+          <%= f.text_field :nome, class: 'form-control' %>
+        </div>
+
+        <% unless eventType.icone.nil? %>
+            <figure class="form-image">
+              <%= image_tag events_types_show_icon_path(eventType) %>
+            </figure>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :icone_file %>
+          <%= f.file_field :icone_file, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.button "<i class='fa fa-check'></i> #{t('save')}".html_safe, class: 'btn btn-success responsive-margin-bottom' %>
+<% end %>
