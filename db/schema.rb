@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010105757) do
+ActiveRecord::Schema.define(version: 20171017190841) do
 
   create_table "app_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "facebook_id"
@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 20171010105757) do
     t.datetime "updated_at",                null: false
     t.text     "descricao",   limit: 65535
     t.boolean  "gratis"
-    t.float    "latitude",    limit: 24
-    t.float    "longitude",   limit: 24
+    t.string   "latitude"
+    t.string   "longitude"
+    t.integer  "user_id"
     t.index ["app_user_id"], name: "index_events_on_app_user_id", using: :btree
+    t.index ["user_id"], name: "fk_rails_0cb5590091", using: :btree
   end
 
   create_table "events_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -80,7 +82,7 @@ ActiveRecord::Schema.define(version: 20171010105757) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "events", "app_users"
+  add_foreign_key "events", "users"
   add_foreign_key "ratings", "app_users"
   add_foreign_key "ratings", "events"
   add_foreign_key "search_parameters", "app_users"

@@ -21,7 +21,7 @@ if navigator.geolocation
     #    myPositionMarker = new (google.maps.Marker)(
     #      map: map
     #      position: myPosition
-    #      icon: '<%= asset_path 'position_marker.png' %>           '
+    #      icon: '<%= asset_path 'position_marker.png' %>                             '
     #    )
 
     addYourLocationButton map
@@ -34,13 +34,51 @@ if navigator.geolocation
       callNewEventWindow event.latLng
   )
 
+$('#add-event-form').validate
+  ignore: []
+  rules:
+    'event[nome]': 'required'
+    'event[tipo]':
+      min: 1
+    'event[data_inicio]': 'required'
+    'event[data_fim]':
+      required: true
+      validPeriod: ['event[data_inicio]', 'event[data_fim]']
+  messages:
+    'event[tipo]':
+      min: '<%= I18n.t('activerecord.errors.messages.required') %>'
+  errorPlacement: (error, element) ->
+    switch element.attr('name')
+      when 'event[tipo]'
+        error.appendTo '#tipo-error-label'
+      else
+        error.insertAfter element
+
+$('#add-event-form').ajaxForm
+  dataType: 'json'
+  beforeSubmit: ->
+    $('#add-event-modal .loading-div').fadeIn()
+  success: ->
+    $('#add-event-modal').modal 'hide'
+    $('#add-event-form').trigger 'reset'
+    $('#tipo').ddslick 'select', {index: 0}
+
+    $('#add-event-modal .loading-div').fadeOut()
+
+    findEvents()
+
+$('#add-event-button').click ->
+  $('#add-event-form').submit()
+
+  false
+
 callNewEventWindow = (position) ->
   newEventWindow.close()
   newEventWindow.setPosition(position)
   newEventWindow.open(map)
 
-  $('#selected-latitude-input').val(position.lat)
-  $('#selected-longitude-input').val(position.lng)
+  $('#event_latitude').val(position.lat)
+  $('#event_longitude').val(position.lng)
 
   $('#add-new-event-link').click ->
     $('#add-event-modal').modal 'show'
@@ -100,3 +138,6 @@ addYourLocationButton = (map) ->
   controlDiv.index = 1
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push controlDiv
   return
+
+findEvents = ->
+  newEventWindow.close()

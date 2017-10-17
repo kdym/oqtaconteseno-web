@@ -17,7 +17,9 @@
       <div class="row align-items-center">
         <div class="col-md-6 col-sm-6">
           <figure id="logo">
-            <%= image_tag 'logo_horizontal.png', class: 'img-fluid', alt: t('app_name'), id: 'logo' %>
+            <a href="<%= events_path %>">
+              <%= image_tag 'logo_horizontal.png', class: 'img-fluid', alt: t('app_name'), id: 'logo' %>
+            </a>
           </figure>
         </div>
 

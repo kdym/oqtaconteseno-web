@@ -13,3 +13,4 @@ pt_BR:
   delete: "Excluir"
   delete_confirm: "Tem certeza que deseja excluir?"
   delete_success: "Excluído com sucesso"
+  select_one: "Selecione uma opção..."

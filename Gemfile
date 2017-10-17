@@ -77,4 +77,10 @@ gem 'pundit'
 
 gem 'jquery-datatables'
 
+gem 'jquery-validation-rails'
+
+gem 'momentjs-rails'
+
+gem 'jquery-form-rails'
+
 ruby '2.3.3'

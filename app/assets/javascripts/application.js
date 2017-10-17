@@ -15,6 +15,11 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require datatables.js.erb
+//= require dd-slick/dd-slick.min
+//= require moment-js
+//= require jquery-validate.js.erb
+//= require tooltip
+//= require jquery.form
 //= require_tree .
 
 $('#avatar-menu').popover({
@@ -24,5 +29,3 @@ $('#avatar-menu').popover({
     placement: 'bottom',
     html: true
 });
-
-$('[data-toggle="tooltip"]').tooltip();

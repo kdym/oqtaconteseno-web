@@ -1,21 +1,51 @@
-<%= form_for event, id: 'add-event-form' do |f| %>
+<%= form_for event, html: {id: 'add-event-form'} do |f| %>
     <div class="form-group">
       <%= f.label :nome %>
       <%= f.text_field :nome, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= f.label :tipo %>
-      <%= f.text_field :tipo %>
+      <label><%= Event.human_attribute_name('tipo') %> <span id="tipo-error-label" class="error"></span></label>
+
+      <select name="tipo" class="form-control" id="tipo">
+        <option value="0" data-description="&nbsp;"><%= t('select_one') %></option>
+
+        <% @types.each do |t| %>
+            <option value="<%= t.id %>" data-imagesrc="<%= get_icon_image_data t %>" data-description="&nbsp;"><%= t.nome %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <%= f.hidden_field :tipo %>
+
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="form-group">
+          <%= f.label :data_inicio %>
+          <%= f.datetime_local_field :data_inicio, class: 'form-control', value: Time.now.strftime('%FT%R') %>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <div class="form-group">
+          <%= f.label :data_fim %>
+          <%= f.datetime_local_field :data_fim, class: 'form-control', value: Time.now.strftime('%FT%R') %>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :gratis %>
+        <%= Event.human_attribute_name('gratis') %>
+      </label>
     </div>
 
     <div class="form-group">
-      <%= f.label :data_inicio %>
-      <% #f.datetime_select :data_inicio %>
+      <%= f.label :descricao %>
+      <%= f.text_area :descricao, class: 'form-control', rows: 8 %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :data_fim %>
-      <% #f.datetime_select :data_fim %>
-    </div>
+    <%= f.hidden_field :latitude %>
+    <%= f.hidden_field :longitude %>
 <% end %>

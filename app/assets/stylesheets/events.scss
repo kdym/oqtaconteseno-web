@@ -16,3 +16,9 @@
   padding: 5px;
   z-index: 999;
 }
+
+#add-event-modal {
+  .modal-dialog {
+    position: relative;
+  }
+}

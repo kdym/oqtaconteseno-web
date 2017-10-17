@@ -2,15 +2,16 @@
 
 <div id="map"></div>
 
-<%= hidden_field_tag 'selected_latitude', nil, id: 'selected-latitude-input' %>
-<%= hidden_field_tag 'selected_longitude', nil, id: 'selected-longitude-input' %>
-
 <script type="text/html" id="add-event-info-window-template">
   <a href="" id="add-new-event-link" class="btn btn-link"><i class="fa fa-plus"></i> <%= t('new_event') %></a>
 </script>
 
 <div class="modal" id="add-event-modal">
   <div class="modal-dialog" role="document">
+    <div class="loading-div">
+      <i class="fa fa-spinner fa-4x fa-pulse"></i>
+    </div>
+
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title"><%= t('new_event') %></h5>
@@ -25,7 +26,8 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-success"><i class="fa fa-check"></i> <%= t('save') %></button>
+        <button type="button" class="btn btn-success" id="add-event-button"><i class="fa fa-check"></i> <%= t('save') %>
+        </button>
       </div>
     </div>
   </div>

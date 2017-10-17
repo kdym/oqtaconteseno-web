@@ -2,6 +2,7 @@ pt_BR:
   activerecord:
     errors:
       messages:
+        required: 'Campo Obrigatório'
         blank: 'é um campo obrigatório'
         png_only: 'somente arquivos tipo PNG'
         max_size: 'tamanho máximo %{size}'
@@ -19,6 +20,8 @@ pt_BR:
         tipo: 'Tipo'
         data_inicio: 'Início'
         data_fim: 'Fim'
+        gratis: 'Evento Pago'
+        descricao: 'Detalhes'
       events_type:
         nome: 'Nome'
         icone: 'Ícone'
