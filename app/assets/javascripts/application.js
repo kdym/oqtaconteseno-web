@@ -20,6 +20,9 @@
 //= require jquery-validate.js.erb
 //= require tooltip
 //= require jquery.form
+//= require jquery-masks
+//= require jquery-tmpl
+//= require marker-clusterer/marker-clusterer
 //= require_tree .
 
 $('#avatar-menu').popover({

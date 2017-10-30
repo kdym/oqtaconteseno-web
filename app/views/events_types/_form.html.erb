@@ -16,6 +16,15 @@
           <%= f.text_field :nome, class: 'form-control' %>
         </div>
 
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :width %>
+              <%= f.text_field :width, class: 'form-control number-only' %>
+            </div>
+          </div>
+        </div>
+
         <% unless eventType.icone.nil? %>
             <figure class="form-image">
               <%= image_tag events_types_show_icon_path(eventType) %>

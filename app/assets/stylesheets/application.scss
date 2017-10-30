@@ -70,6 +70,10 @@ body {
 
       #avatar-menu {
         cursor: pointer;
+
+        img {
+          height: 5vh;
+        }
       }
 
       .btn {
@@ -135,6 +139,10 @@ body {
 
 .to-right {
   text-align: right;
+}
+
+.to-center {
+  text-align: center;
 }
 
 .align-center {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017190841) do
+ActiveRecord::Schema.define(version: 20171027112519) do
 
   create_table "app_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "facebook_id"
@@ -20,24 +20,26 @@ ActiveRecord::Schema.define(version: 20171017190841) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nome"
-    t.integer  "tipo"
     t.datetime "data_inicio"
     t.datetime "data_fim"
     t.integer  "app_user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.text     "descricao",   limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.text     "descricao",      limit: 65535
     t.boolean  "gratis"
     t.string   "latitude"
     t.string   "longitude"
     t.integer  "user_id"
+    t.integer  "events_type_id"
     t.index ["app_user_id"], name: "index_events_on_app_user_id", using: :btree
+    t.index ["events_type_id"], name: "index_events_on_events_type_id", using: :btree
     t.index ["user_id"], name: "fk_rails_0cb5590091", using: :btree
   end
 
   create_table "events_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "nome"
-    t.binary "icone", limit: 16777215
+    t.string  "nome"
+    t.binary  "icone", limit: 16777215
+    t.integer "width"
   end
 
   create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -82,6 +84,7 @@ ActiveRecord::Schema.define(version: 20171017190841) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "events", "events_types"
   add_foreign_key "events", "users"
   add_foreign_key "ratings", "app_users"
   add_foreign_key "ratings", "events"

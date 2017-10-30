@@ -14,14 +14,16 @@
             <tr>
               <th><%= EventsType.human_attribute_name('icone') %></th>
               <th><%= EventsType.human_attribute_name('nome') %></th>
+              <th><%= EventsType.human_attribute_name('width') %></th>
               <th><%= t('actions') %></th>
             </tr>
             </thead>
             <tbody>
             <% @eventsTypes.each do |e| %>
                 <tr>
-                  <td><%= image_tag events_types_show_icon_path(e), class: 'event-type-icon-list' %></td>
+                  <td><%= image_tag events_types_show_icon_path(e), width: e.width, height: EventsType::ICON_HEIGHT %></td>
                   <td><%= e.nome %></td>
+                  <td><%= e.width %></td>
                   <td>
                     <% if policy(e).edit? %>
                         <%= link_to t('edit'), edit_events_type_path(e), class: 'btn btn-link' %>

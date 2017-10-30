@@ -7,6 +7,8 @@ class EventsType < ApplicationRecord
 
   before_save :save_icone
 
+  ICON_HEIGHT = 50
+
   MAX_ICON_SIZE = 2.megabytes
   VALID_ICON_EXTENSIONS = %w(.png)
 
@@ -26,5 +28,9 @@ class EventsType < ApplicationRecord
     if self.icone_file.present?
       self.icone = self.icone_file.read
     end
+  end
+
+  def encoded_icone
+    Base64.strict_encode64 self.icone
   end
 end

@@ -2,12 +2,192 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+eventsMarkers = []
+
+clearAllMarkers = ->
+  $(eventsMarkers).each ->
+    this.setMap(null)
+
+  eventsMarkers = []
+
+findEvents = ->
+  $('#refresh-events-button i').addClass 'fa-spin'
+
+  $.ajax
+    url: '<%= Rails.application.routes.url_helpers.events_search_path %>'
+    dataType: 'json'
+    type: 'post'
+    data:
+      latitude: map.getCenter().lat
+      longitude: map.getCenter().lng
+      radius: 5
+    success: (data)->
+      clearAllMarkers()
+
+      $(data).each ->
+        event = @
+
+        marker = new google.maps.Marker
+          map: map
+          opacity: if event.is_today then 1.0 else 0.6
+          position:
+            lat: Number(event.latitude)
+            lng: Number(event.longitude)
+          icon:
+            url: '/events_types/show_icon/' + event.events_type_id
+            scaledSize: new google.maps.Size(event.events_type.width, 50)
+
+        marker.addListener 'click', ->
+          emptyStars = 5 - event.evaluations.nota
+          stars = ''
+
+          i = 0
+          while i < event.evaluations.nota
+            stars += '<i class="fa fa-star text-warning"></i>'
+
+            i++
+
+          i = 0
+          while i < emptyStars
+            stars += '<i class="fa fa-star text-secondary"></i>'
+
+            i++
+
+          evaluationsText = if event.evaluations.total == 1 then '<%= I18n.t('activerecord.attributes.event.evaluations.one') %>' else '<%= I18n.t('activerecord.attributes.event.evaluations.other') %>'
+
+          templateData =
+            icon: '/events_types/show_icon/' + event.events_type_id
+            name: event.nome
+            type: event.events_type.nome
+            timing: event.timing.time
+            timing_class: event.timing.class
+            pricing: event.paid_event.pricing
+            pricing_class: event.paid_event.class
+            stars: stars
+            evaluations: event.evaluations.total + ' ' + evaluationsText
+
+          new (google.maps.InfoWindow)(
+            content: $('#event-info-window-template').tmpl(templateData).html()
+          ).open map, @
+
+        eventsMarkers.push marker
+
+      new MarkerClusterer map, eventsMarkers,
+        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+
+      $('#refresh-events-button i').removeClass 'fa-spin'
+
 newEventWindow = null
 map = null
 
 if navigator.geolocation
   navigator.geolocation.getCurrentPosition((position) ->
     myPosition = {lat: position.coords.latitude, lng: position.coords.longitude}
+
+    mapStyle = new google.maps.StyledMapType(
+        [
+          {
+            'elementType': 'geometry'
+            'stylers': [{'color': '#212121'}]
+          }
+          {
+            'elementType': 'labels.icon'
+            'stylers': [{'visibility': 'off'}]
+          }
+          {
+            'elementType': 'labels.text.fill'
+            'stylers': [{'color': '#757575'}]
+          }
+          {
+            'elementType': 'labels.text.stroke'
+            'stylers': [{'color': '#212121'}]
+          }
+          {
+            'featureType': 'administrative'
+            'elementType': 'geometry'
+            'stylers': [{'color': '#757575'}]
+          }
+          {
+            'featureType': 'administrative.country'
+            'elementType': 'labels.text.fill'
+            'stylers': [{'color': '#9e9e9e'}]
+          }
+          {
+            'featureType': 'administrative.land_parcel'
+            'stylers': [{'visibility': 'off'}]
+          }
+          {
+            'featureType': 'administrative.locality'
+            'elementType': 'labels.text.fill'
+            'stylers': [{'color': '#bdbdbd'}]
+          }
+          {
+            'featureType': 'poi'
+            'elementType': 'labels.text.fill'
+            'stylers': [{'color': '#757575'}]
+          }
+          {
+            'featureType': 'poi.park'
+            'elementType': 'geometry'
+            'stylers': [{'color': '#181818'}]
+          }
+          {
+            'featureType': 'poi.park'
+            'elementType': 'labels.text.fill'
+            'stylers': [{'color': '#616161'}]
+          }
+          {
+            'featureType': 'poi.park'
+            'elementType': 'labels.text.stroke'
+            'stylers': [{'color': '#1b1b1b'}]
+          }
+          {
+            'featureType': 'road'
+            'elementType': 'geometry.fill'
+            'stylers': [{'color': '#2c2c2c'}]
+          }
+          {
+            'featureType': 'road'
+            'elementType': 'labels.text.fill'
+            'stylers': [{'color': '#8a8a8a'}]
+          }
+          {
+            'featureType': 'road.arterial'
+            'elementType': 'geometry'
+            'stylers': [{'color': '#373737'}]
+          }
+          {
+            'featureType': 'road.highway'
+            'elementType': 'geometry'
+            'stylers': [{'color': '#3c3c3c'}]
+          }
+          {
+            'featureType': 'road.highway.controlled_access'
+            'elementType': 'geometry'
+            'stylers': [{'color': '#4e4e4e'}]
+          }
+          {
+            'featureType': 'road.local'
+            'elementType': 'labels.text.fill'
+            'stylers': [{'color': '#616161'}]
+          }
+          {
+            'featureType': 'transit'
+            'elementType': 'labels.text.fill'
+            'stylers': [{'color': '#757575'}]
+          }
+          {
+            'featureType': 'water'
+            'elementType': 'geometry'
+            'stylers': [{'color': '#000000'}]
+          }
+          {
+            'featureType': 'water'
+            'elementType': 'labels.text.fill'
+            'stylers': [{'color': '#3d3d3d'}]
+          }
+        ]
+    )
 
     map = new google.maps.Map(document.getElementById('map'),
       zoom: 17
@@ -16,12 +196,17 @@ if navigator.geolocation
       fullscreenControl: false
       disableDoubleClickZoom: true
       clickableIcons: false
+      mapTypeControlOptions:
+        mapTypeIds: ['styled_map']
     )
+
+    map.mapTypes.set 'styled_map', mapStyle
+    #map.setMapTypeId 'styled_map'
 
     #    myPositionMarker = new (google.maps.Marker)(
     #      map: map
     #      position: myPosition
-    #      icon: '<%= asset_path 'position_marker.png' %>                             '
+    #      icon: '<%= asset_path 'position_marker.png' %>                                                                               '
     #    )
 
     addYourLocationButton map
@@ -32,24 +217,31 @@ if navigator.geolocation
 
     map.addListener 'dblclick', (event) ->
       callNewEventWindow event.latLng
+
+    findEvents()
   )
+
+$('#refresh-events-button').click ->
+  findEvents()
+
+  false
 
 $('#add-event-form').validate
   ignore: []
   rules:
     'event[nome]': 'required'
-    'event[tipo]':
+    'event[events_type_id]':
       min: 1
     'event[data_inicio]': 'required'
     'event[data_fim]':
       required: true
       validPeriod: ['event[data_inicio]', 'event[data_fim]']
   messages:
-    'event[tipo]':
+    'event[events_type_id]':
       min: '<%= I18n.t('activerecord.errors.messages.required') %>'
   errorPlacement: (error, element) ->
     switch element.attr('name')
-      when 'event[tipo]'
+      when 'event[events_type_id]'
         error.appendTo '#tipo-error-label'
       else
         error.insertAfter element
@@ -61,9 +253,11 @@ $('#add-event-form').ajaxForm
   success: ->
     $('#add-event-modal').modal 'hide'
     $('#add-event-form').trigger 'reset'
-    $('#tipo').ddslick 'select', {index: 0}
+    $('#events-type-id').ddslick 'select', {index: 0}
 
     $('#add-event-modal .loading-div').fadeOut()
+
+    newEventWindow.close()
 
     findEvents()
 
@@ -138,6 +332,3 @@ addYourLocationButton = (map) ->
   controlDiv.index = 1
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push controlDiv
   return
-
-findEvents = ->
-  newEventWindow.close()

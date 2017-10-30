@@ -22,7 +22,13 @@ pt_BR:
         data_fim: 'Fim'
         gratis: 'Evento Pago'
         descricao: 'Detalhes'
+        paid: 'Evento Pago'
+        not_paid: 'Evento Grátis'
+        evaluations:
+          one: 'Avaliação'
+          other: 'Avaliações'
       events_type:
         nome: 'Nome'
         icone: 'Ícone'
         icone_file: 'Ícone'
+        width: 'Largura'

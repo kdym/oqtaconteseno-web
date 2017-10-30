@@ -83,4 +83,6 @@ gem 'momentjs-rails'
 
 gem 'jquery-form-rails'
 
+gem 'jquery-inputmask-rails'
+
 ruby '2.3.3'

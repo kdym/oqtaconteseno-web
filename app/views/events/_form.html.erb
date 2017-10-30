@@ -7,7 +7,7 @@
     <div class="form-group">
       <label><%= Event.human_attribute_name('tipo') %> <span id="tipo-error-label" class="error"></span></label>
 
-      <select name="tipo" class="form-control" id="tipo">
+      <select name="events_type_id" class="form-control" id="events-type-id">
         <option value="0" data-description="&nbsp;"><%= t('select_one') %></option>
 
         <% @types.each do |t| %>
@@ -16,7 +16,7 @@
       </select>
     </div>
 
-    <%= f.hidden_field :tipo %>
+    <%= f.hidden_field :events_type_id %>
 
     <div class="row">
       <div class="col-md-6 col-sm-6">

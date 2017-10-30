@@ -5,8 +5,8 @@ $('#events-types-list').DataTable
     targets: [0, 2]
   }]
 
-$('#tipo').ddslick
+$('#events-type-id').ddslick
   width: '100%'
   background: '#fff'
   onSelected: (data) ->
-    $('#event_tipo').val data.selectedIndex
+    $('#event_events_type_id').val data.selectedData.value

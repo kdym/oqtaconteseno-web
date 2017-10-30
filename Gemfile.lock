@@ -94,6 +94,7 @@ GEM
     jquery-datatables (1.10.15)
     jquery-form-rails (1.0.1)
       jquery-rails
+    jquery-inputmask-rails (2.5.5)
     jquery-rails (4.2.2)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -250,6 +251,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-datatables
   jquery-form-rails
+  jquery-inputmask-rails
   jquery-rails
   jquery-tmpl-rails
   jquery-validation-rails

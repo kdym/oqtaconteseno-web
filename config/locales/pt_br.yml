@@ -14,3 +14,25 @@ pt_BR:
   delete_confirm: "Tem certeza que deseja excluir?"
   delete_success: "Excluído com sucesso"
   select_one: "Selecione uma opção..."
+  events_timing:
+    started_at: "Começou há %{time}"
+    ends_at: "Termina em %{time}"
+    starts_at: "Começa em %{time}"
+  time_units:
+    days:
+      small: "d"
+      full:
+        one: "dia"
+        other: "dias"
+    hours:
+      small: "h"
+      full:
+        one: "hora"
+        other: "horas"
+    minutes:
+      small: "min"
+      full:
+        one: "minuto"
+        other: "minutos"
+  interested: "Tenho Interesse"
+  details: "Detalhes"

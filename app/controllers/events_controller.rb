@@ -98,8 +98,19 @@ class EventsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json {render json: @eventos.to_json(methods: [:evaluations, :is_today])}
+      format.json {
+        render json: @eventos.to_json(
+            methods:
+                [:evaluations, :is_today, :timing, :paid_event],
+            include:
+                {events_type: {except: :icone}}
+        )
+      }
     end
+  end
+
+  def show
+
   end
 
   private
@@ -115,7 +126,7 @@ class EventsController < ApplicationController
             :nome,
             :latitude,
             :longitude,
-            :tipo,
+            :events_type_id,
             :data_inicio,
             :data_fim,
             :descricao,

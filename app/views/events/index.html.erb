@@ -6,6 +6,55 @@
   <a href="" id="add-new-event-link" class="btn btn-link"><i class="fa fa-plus"></i> <%= t('new_event') %></a>
 </script>
 
+<script type="text/html" id="event-info-window-template">
+  <div>
+    <div class="event-info-window-container">
+      <div class="event-header">
+        <div class="row">
+          <div class="col-md-3">
+            <figure class="to-center">
+              <image src="${icon}"/>
+            </figure>
+          </div>
+
+          <div class="col-md-9">
+            <h1>${name}</h1>
+
+            <h2>${type}</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-period ${timing_class}">
+        ${timing}
+      </div>
+
+      <div class="event-pricing ${pricing_class}">
+        ${pricing}
+      </div>
+
+      <div class="event-rating">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <p>{{html stars}}</p>
+
+            <p>${evaluations}</p>
+          </div>
+
+          <div class="col-md-6 to-right">
+            <!--<i class="fa fa-fire fa-2x text-danger" data-toggle="tooltip" title="Esse evento está bombando"></i>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="event-actions to-right">
+        <a href="" class="btn btn-primary btn-sm"><i class="fa fa-thumbs-up"></i> <%= t('interested') %></a>
+        <a href="" class="btn btn-primary btn-sm"><i class="fa fa-ellipsis-h"></i> <%= t('details') %></a>
+      </div>
+    </div>
+  </div>
+</script>
+
 <div class="modal" id="add-event-modal">
   <div class="modal-dialog" role="document">
     <div class="loading-div">
