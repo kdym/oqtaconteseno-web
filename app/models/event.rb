@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  belongs_to :app_user
+  belongs_to :user
   belongs_to :events_type
 
   include EventsHelper
@@ -33,6 +33,10 @@ class Event < ApplicationRecord
       {time: I18n.t('events_timing.starts_at', time: humanize_minutes(timing * -1)), class: 'text-primary'}
     else
       end_timing = ((end_date - now) / 1.minutes)
+
+      if end_timing < 0
+        return {time: I18n.t('events_timing.ended'), class: ''}
+      end
 
       if (timing / total_timing) * 100 >= 50
         return {time: I18n.t('events_timing.ends_at', time: humanize_minutes(end_timing)), class: 'text-warning'}

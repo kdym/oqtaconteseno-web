@@ -18,6 +18,7 @@ pt_BR:
     started_at: "Começou há %{time}"
     ends_at: "Termina em %{time}"
     starts_at: "Começa em %{time}"
+    ended: "Evento já terminou"
   time_units:
     days:
       small: "d"
@@ -36,3 +37,11 @@ pt_BR:
         other: "minutos"
   interested: "Tenho Interesse"
   details: "Detalhes"
+  read_more: "Leia mais..."
+  comment_placeholder: "Deixe aqui seu comentário..."
+  evaluate: "Avaliar"
+  datetime_format: "%d/%m/%Y %H:%M"
+  calculating_distance: "Calculando distância..."
+  from_you: "de você"
+  distance_not_available: "Distância não disponível"
+  related_events: "Eventos Semelhantes"

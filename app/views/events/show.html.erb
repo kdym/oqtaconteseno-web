@@ -1,0 +1,211 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Fotos</h3>
+        </div>
+
+        <div class="box-body"></div>
+      </div>
+
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title"><%= Event.human_attribute_name 'descricao' %></h3>
+        </div>
+
+        <div class="box-body">
+          <div id="event-details"><%= @event.descricao %></div>
+
+          <div class="read-more-container">
+            <a href="" class="btn btn-link" id="read-more-details-link" data-status="false"><%= t('read_more') %></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title"><%= t('activerecord.attributes.event.evaluations.other') %></h3>
+        </div>
+
+        <div class="box-body">
+          <div class="comments-container">
+            <div class="comment">
+              <div class="comment-header">
+                <%= image_tag current_user.image, class: 'rounded-circle avatar-picture' %>
+
+                <h1><%= current_user.name %></h1>
+              </div>
+
+              <div class="comment-body">
+                <div class="comment-box">
+                  <textarea rows="3" placeholder="<%= t('comment_placeholder') %>"></textarea>
+                </div>
+              </div>
+
+              <div class="comment-footer">
+                <div class="row align-items-center">
+                  <div class="col-md-6 col-sm-6">
+                    <i class="fa fa-star fa-2x text-warning"></i>
+                    <i class="fa fa-star fa-2x text-warning"></i>
+                    <i class="fa fa-star fa-2x text-warning"></i>
+                    <i class="fa fa-star fa-2x text-secondary"></i>
+                    <i class="fa fa-star fa-2x text-secondary"></i>
+                  </div>
+
+                  <div class="col-md-6 col-sm-6 to-right">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> <%= t('evaluate') %>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <% (1..10).each do |i| %>
+                <div class="comment">
+                  <div class="comment-header">
+                    <%= image_tag current_user.image, class: 'rounded-circle avatar-picture' %>
+
+                    <h1>Usuário</h1>
+                  </div>
+
+                  <div class="comment-body">
+                    <div class="comment-box">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel imperdiet ex. Nam eu
+                        lacus ipsum. Integer commodo velit at metus mattis fermentum. Vestibulum et blandit elit.
+                        Integer
+                        sodales tristique lorem, eget tincidunt ante porta sed. Aliquam est ligula, rhoncus id nisi nec,
+                        rutrum tempus nunc. Proin ut velit elementum augue pretium dapibus et vitae velit. Etiam eu
+                        velit
+                        blandit, suscipit est eu, convallis metus. Ut et odio eget arcu congue sagittis. Pellentesque
+                        scelerisque gravida quam ut hendrerit. Donec consectetur vulputate sem, eget aliquam metus
+                        auctor
+                        eu.
+                      </p>
+
+                      <div class="row align-items-center">
+                        <div class="col-md-6 col-sm-6">
+                          <a href="" class="btn btn-danger btn-sm"><i class="fa fa-bullhorn"></i> Denunciar</a>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 to-right">
+                          <i class="fa fa-star text-warning"></i>
+                          <i class="fa fa-star text-warning"></i>
+                          <i class="fa fa-star text-warning"></i>
+                          <i class="fa fa-star text-secondary"></i>
+                          <i class="fa fa-star text-secondary"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="box box-widget">
+        <div class="widget-header">
+          <div class="widget-map" id="event-map" data-latitude="<%= @event.latitude %>" data-longitude="<%= @event.longitude %>"></div>
+        </div>
+
+        <div class="box-footer">
+          <div class="widget-image">
+            <%= image_tag events_types_show_icon_path(@event.events_type), class: 'rounded-circle' %>
+
+            <h1><%= @event.nome %></h1>
+
+            <h2><%= @event.events_type.nome %></h2>
+
+            <p>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-secondary"></i>
+              <i class="fa fa-star text-secondary"></i>
+            </p>
+          </div>
+
+          <p>
+            <i class="fa fa-calendar fa-fw"></i> <%= sprintf '%s a %s', @event.data_inicio.strftime(t('datetime_format')), @event.data_fim.strftime(t('datetime_format')) %>
+          </p>
+
+          <% event_timing = @event.timing %>
+
+          <p class="<%= event_timing[:class] %>"><i class="fa fa-clock-o fa-fw"></i> <%= event_timing[:time] %></p>
+
+          <% paid_event = @event.paid_event %>
+
+          <p class="<%= paid_event[:class] %>"><i class="fa fa-usd fa-fw"></i> <%= paid_event[:pricing] %></p>
+
+          <p><i class="fa fa-road fa-fw"></i> <span id="distance-from-event"></span></p>
+
+          <p><i class="fa fa-users fa-fw"></i> 999 pessoas têm interesse</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-body">
+          <div id="event-owner">
+            <div class="row">
+              <div class="col-md-3">
+                <figure id="owner-avatar">
+                  <%= image_tag @event.user.image, class: 'rounded-circle img-fluid avatar-picture' %>
+                </figure>
+              </div>
+
+              <div class="col-md-9">
+                <h3><%= @event.user.name %></h3>
+
+                <ul class="trophy-list">
+                  <% (1..20).each do %>
+                      <li><%= image_tag 'trophy.png', data: {toggle: 'tooltip'}, title: 'Achievement' %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title"><%= t('related_events') %></h3>
+        </div>
+
+        <div class="box-body">
+          <div id="related-events">
+            <div class="row">
+              <% @related_events.each do |r| %>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="event" data-latitude="<%= r.latitude %>" data-longitude="<%= r.longitude %>">
+                      <figure class="event-icon">
+                        <a href="<%= event_path r %>">
+                          <%= image_tag events_types_show_icon_path(r.events_type), class: 'img-fluid' %>
+                        </a>
+                      </figure>
+
+                      <h1><%= r.nome %></h1>
+
+                      <h2>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-secondary"></i>
+                        <i class="fa fa-star text-secondary"></i>
+                      </h2>
+
+                      <h3 class="related-event-distance"></h3>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

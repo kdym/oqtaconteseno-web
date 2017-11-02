@@ -110,7 +110,14 @@ class EventsController < ApplicationController
   end
 
   def show
+    start_date = Time.zone.now
+    end_date = 7.days.from_now.change({hour: 23, min: 59})
 
+    @related_events = Event.near([@event.latitude, @event.longitude], 5)
+                          .where('data_fim >= ? and data_inicio <= ?', start_date, end_date)
+                          .where(events_type_id: @event.events_type_id)
+                          .where.not(id: @event.id)
+                          .limit(6)
   end
 
   private

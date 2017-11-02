@@ -24,6 +24,8 @@ class AuthCallbacksController < Devise::OmniauthCallbacksController
       user.role = :common
     end
 
+    user.provider = 'facebook'
+    user.uid = auth[:uid]
     user.email = auth[:email]
     user.name = auth[:name]
     user.password = Devise.friendly_token[0, 20]
